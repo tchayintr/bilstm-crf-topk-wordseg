@@ -1,0 +1,31 @@
+# folders
+######################
+data/*
+!data/samples/
+!data/samples/*
+log/*
+models/decode/*
+models/main/*
+sample_scripts/*
+
+
+# files
+######################
+!*.gitkeep
+!log/20210308_1538.decode.log
+!models/decode/decode_sample_ch_top5.sl
+!sample_scripts/sample_seg_dev.sh
+
+# caches
+######################
+__pycache__/
+
+# OS generated files 
+######################
+_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
