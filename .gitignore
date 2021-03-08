@@ -14,7 +14,7 @@ sample_scripts/*
 !*.gitkeep
 !log/20210308_1538.decode.log
 !models/decode/decode_sample_ch_top5.sl
-!sample_scripts/sample_seg_dev.sh
+!sample_scripts/sample_seg.sh
 
 # caches
 ######################
