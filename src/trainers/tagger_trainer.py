@@ -192,7 +192,7 @@ class TaggerTrainerBase(Trainer):
                         for xi_str, yi_str in zip(x_str, y_str)
                     ]
                     res = ''.join(res).rstrip(' ')
-                    print(res, file=file)
+                    print(res, end=constants.SL_COLUMN_DELIM, file=file)
                 print('', file=file)
 
     def load_external_dictionary(self):
@@ -278,7 +278,6 @@ class TaggerTrainer(TaggerTrainerBase):
             'mlp_n_layers': self.args.mlp_n_layers,
             'mlp_hidden_size': self.args.mlp_hidden_size,
             'inference_layer': self.args.inference_layer,
-            # 'crf_top_k': self.args.crf_top_k,
             'embed_dropout': self.args.embed_dropout,
             'rnn_dropout': self.args.rnn_dropout,
             'mlp_dropout': self.args.mlp_dropout,
@@ -312,10 +311,9 @@ class TaggerTrainer(TaggerTrainerBase):
                 if (key == 'pretrained_unigram_embed_size'
                         or key == 'unigram_embed_size' or key == 'rnn_n_layers'
                         or key == 'rnn_hidden_size' or key == 'mlp_n_layers'
-                        # or key == 'mlp_hidden_size' or key == 'crf_top_k'
-                        or key == 'mlp_hidden_size' or
-                        key == 'token_freq_threshold' or key
-                        == 'token_max_vocab_size'):
+                        or key == 'mlp_hidden_size'
+                        or key == 'token_freq_threshold'
+                        or key == 'token_max_vocab_size'):
                     val = int(val)
 
                 elif (key == 'embed_dropout' or key == 'rnn_dropout'
@@ -414,16 +412,6 @@ class TaggerTrainer(TaggerTrainerBase):
 
         self.classifier = classifiers.sequence_tagger.SequenceTagger(
             predictor, task=self.task)
-
-    def gen_vocabs(self):
-        if not self.task == constants.TASK_SEG:
-            return
-
-        train_path = self.args.path_prefix + self.args.train_data
-        char_table = self.dic.tables[constants.UNIGRAM]
-        vocabs = self.data_loader.gen_vocabs(
-            train_path, char_table, data_format=self.args.input_data_format)
-        return vocabs
 
     def setup_evaluator(self, evaluator=None):
         evaluator1 = None

@@ -69,9 +69,9 @@ INPUT_FORMAT=sl
 
 MODE=decode
 DECODE_DATA=data/samples/best2010_sample_10.raw.sl
-OUTPUT_DATA=decode_sample_ch_top5.sl
+OUTPUT_DATA=decode_sample_ch_top3.sl
 OUTPUT_FORMAT=sl
-CRF_TOP_K=5
+CRF_TOP_K=3
 
 # python3 src/segmenter.py \
 #        --task $TASK \
