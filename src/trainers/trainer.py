@@ -466,9 +466,10 @@ class Trainer(object):
 
                 if not self.args.quiet:
                     self.reporter.close()
-                    self.reporter = open(
-                        '{}/{}.log'.format(constants.LOG_DIR, self.start_time),
-                        'a')
+                    self.reporter = open('{}/{}.{}.log'.format(
+                        constants.LOG_DIR, self.start_time,
+                        self.args.execute_mode),
+                                         mode='a')
 
                 # Reset counters
                 n_sen = 0
