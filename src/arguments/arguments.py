@@ -221,10 +221,10 @@ class ArgumentLoader(object):
         )
         parser.add_argument(
             '--output_data_format',
-            choices=['sl', 'wl'],
+            choices=['sl', 'wl', 'json'],
             default='sl',
             help=
-            'Choose format of output data from among \'sl\' and \'wl\' (Default: sl)'
+            'Choose format of output data from among \'sl\', \'wl\', \'json\' (Default: sl)'
         )
         parser.add_argument(
             '--output_token_delimiter',
@@ -483,6 +483,9 @@ class ArgumentLoader(object):
             parser.add_argument('--output_token_delimiter',
                                 dest='output_token_delim',
                                 default=constants.SL_TOKEN_DELIM)
+        elif args.output_data_format == 'json':
+            parser.add_argument('--output_data_format',
+                                default=args.output_data_format)
         elif not args.output_data_format:
             parser.add_argument('--output_data_format', default='wl')
             parser.add_argument('--output_token_delimiter',
